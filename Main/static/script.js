@@ -275,11 +275,3 @@ function fetchContactInfo() {
         })
         .catch(error => console.error(error));
 }
-
-if (localStorage) {
-    // LocalStorage is supported!
-  } else {
-    // No support. Use a fallback such as browser cookies or store on the server.
-  }
-// Load data when the page initializes
-initializePage();
