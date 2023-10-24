@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AMPQES</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div id="tabs">
+        <button class="tab-button active" onclick="openTab(event, 'tab1')">Logging</button>
+        <button class="tab-button" onclick="openTab(event, 'tab2')">Job Info</button>
+        <button class="tab-button" onclick="openTab(event, 'tab3')">Companies</button>
+        <button class="tab-button" onclick="openTab(event, 'tab4')">Contacts</button>
+        <button class="tab-button" onclick="openTab(event, 'tab5')">Assets</button>
+        <button class="tab-button" onclick="openTab(event, 'tab6')">Reports</button>
+    </div>
+
+    <div id="tab1" class="tab-content">
+        <p>Fill out Jobs, Customers, and contacts here.</p>
+        <button onclick="openForm('form1')">New Project</button>
+        <button onclick="openForm('form2')">New Customer</button>
+        <button onclick="openForm('form3')">New Contact</button>
+        <div id="form1" class="form" style="display: none;">
+            <form onsubmit="addJob(event)">
+                <label for="project_number"> Project Number:</label>
+                <input type="text" id="project_number" name="project_number" placeholder="Enter Project Number" required><br><br>
+
+                <label for="date_started"> Date Started:</label>
+                <input type="date" id="date_started" name="date_started" placeholder="Enter Date Started" required><br><br>
+
+                <label for="customer"> Company:</label>
+                <input type="text" id="customer" name="customer" placeholder="Enter Customer Name" required><br><br>
+
+                <label for="contact"> Contact:</label>
+                <input type="text" id="contact" name="contact" placeholder="Enter Contact Name" required><br><br>
+
+                <label for="assets">Assets:</label>
+                <textarea id="assets" name="assets" rows="4" cols="50" placeholder="Enter assets information"></textarea>
+
+            <div class="form-buttons">
+                <input type="submit" value="Submit">
+                <button type="button" onclick="closeform('form1')">Close</button>
+            </div>
+            </form>
+        </div>
+        <div id="form2" class="form" style="display: none;">
+            <!-- Add a form for Company details -->
+            <form onsubmit="addCompany(event)">
+                <label for="company_name"> Company Name:</label>
+                <input type="text" id="company_name" name="company_name" placeholder="Enter Company Name" required><br><br>
+
+                <label for="company_address"> Company Address:</label>
+                <input type="text" id="company_address" name="company_address" placeholder="Enter Company address" required><br><br>
+
+                <label for="company_contact"> Contact:</label>
+                <input type="text" id="company_contact" name="company_contact" placeholder="Enter Contact Name" required><br><br>
+
+                <input type="submit" value="Submit">
+                <button type="button" onclick="closeform('form2')">Close</button>
+            </form>
+        </div>
+        <div id="form3" class="form" style="display: none;">
+            <!-- Add a form for contact details -->
+            <form onsubmit="addContact(event)">
+                <label for="contact_name"> Contact Name:</label>
+                <input type="text" id="contact_name" name="contact_name" placeholder="Enter Contact Name" required><br><br>
+
+                <label for="email"> Contact Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter Contact Email" required><br><br>
+
+                <label for="phone"> Contact:</label>
+                <input type="text" id="phone" name="phone" placeholder="Enter Contact Cell" required><br><br>
+
+                <input type="submit" value="Submit">
+                <button type="button" onclick="closeform('form3')">Close</button>
+            </form>
+        </div>
+    </div>
+    <!--  tab content for job info -->
+    <div id="tab2" class="tab-content">
+        <div id="job-info">
+            <div id="in-progress-jobs">
+            <!-- Job information will be displayed here -->
+            </div>
+            <div id="finished-jobs"></div>
+            <!--finished jobs here-->
+        </div>
+    </div>
+
+    <!--Tab content for company info-->
+    <div id="tab3" class="tab-content">
+        <div id="company-info">
+            <!-- company information will be displayed here -->
+        </div>
+    </div>
+
+    <div id="tab4" class="tab-content">
+        <div id="contact-info">
+            <!-- contact information will be displayed here -->
+        </div>
+    </div>
+
+    <div id="tab5" class="tab-content">
+        <p>Fill out Assets here.</p>
+        <button onclick="openForm('form4')">New Asset</button>
+        <div id="form4" class="form" style="display: none;">
+            <form onsubmit="addAsset(event)">
+                <label for="asset_name"> Asset Name:</label>
+                <input type="text" id="asset_name" name="asset_name" placeholder="Enter Asset Name" required><br><br>
+        
+                <label for="asset_type"> Asset Type:</label>
+                <input type="text" id="asset_type" name="asset_type" placeholder="Enter Asset Type" required><br><br>
+        
+                <label for="asset_details"> Asset Details:</label>
+                <textarea id="asset_details" name="asset_details" rows="4" cols="50" placeholder="Enter Asset Details" required></textarea>
+
+                <div class="form-buttons">
+                    <input type="submit" value="Submit">
+                    <button type="button" onclick="closeform('form4')">Close</button>
+                </div>
+            </form>
+        </div>
+        <!--display asset info to the current assets-->
+        <div id="asset-info"></div>
+    </div>
+    
+
+    <div id="tab6" class="tab-content">
+        <p>Fill out Reports here.</p>
+        <button onclick="openForm('form5')">New Report</button>
+        <div id="form5" class="form" style="display: none;">
+            <form onsubmit="addReport(event)">
+                <label for="asset_id"> Assett ID:</label>
+                <input type="text" id="asset_id" name="asset_id" placeholder="Enter Asset ID" required><br><br>
+
+                <div class="form-buttons">
+                    <input type="submit" value="Submit">
+                    <button type="button" onclick="closeform('form5')">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Include your script.js file for tab functionality -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
